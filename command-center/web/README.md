@@ -30,18 +30,30 @@ agent token alone cannot approve (401) — that is the authority boundary.
 
 ## Deploy to Vercel
 
-1. **Push** this `command-center/web` directory to a private GitHub repo
-   (or set it as the Vercel project root).
-2. **Database**: create a Neon Postgres (Vercel integration). Enable PITR.
-3. **Vercel project**: import the repo, root = `command-center/web`.
-4. **Env vars** (Project Settings → Environment Variables), generate with
+The repo root is the trading system; **this app lives in `command-center/web`**,
+so the Vercel project's Root Directory MUST point there or you get a 404.
+
+1. **Vercel project** → Import `UdayIND/Agentic-Trading-Monte-Carlo`.
+   In **Settings → Build & Deployment → Root Directory**, set
+   **`command-center/web`** (this is the #1 cause of a blank 404).
+2. **Database**: create a Neon Postgres (Vercel → Storage → Neon). Copy its
+   pooled connection string (`...?sslmode=require`). Enable PITR.
+3. **Env vars** (Settings → Environment Variables), generate secrets with
    `openssl rand -hex 32`:
    `DATABASE_URL` (Neon), `INGEST_SECRET`, `AGENT_TOKEN`, `CRON_SECRET`,
    `SESSION_SECRET`, `OPERATOR_PASSWORD`, `NEXT_PUBLIC_PHASE=paper`.
    (Vercel auto-sends `Authorization: Bearer $CRON_SECRET` to cron routes.)
-5. **Migrate**: `npx prisma migrate deploy` against the Neon URL (CI step or
-   one-off locally with the prod `DATABASE_URL`).
-6. **Deploy**. Crons in `vercel.json` (watchdog 9:20 ET ×2 for DST, rollup).
+4. **Deploy / Redeploy.** The build runs `prisma migrate deploy`
+   automatically, so a fresh Neon DB gets its schema on first deploy — no
+   manual migrate step. (If `DATABASE_URL` is missing the build fails fast
+   with a clear Prisma error — that's intended.)
+5. **Seed (optional)**, to see the demo data: run `npm run db:seed` locally
+   with the prod `DATABASE_URL` in `.env`. Skip for a clean production start.
+
+Crons in `vercel.json` (watchdog 9:20 ET ×2 for DST, rollup) activate on
+deploy. **Note:** the build runs migrations against whatever `DATABASE_URL`
+is set per-environment — use a separate Neon branch DB for Preview so PRs
+never migrate production.
 
 ## Connecting the agent
 
