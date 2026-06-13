@@ -1,0 +1,87 @@
+# UI WIREFRAMES (v6) — Key Screens (ASCII)
+
+## / — Home
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│ ⚠ SYSTEM BANNER (halts / unacked events / staleness)     [PAPER] 🌙 │
+├──────────────────────────────────────────────────────────────────────┤
+│ TODAY: ▣ DO NOTHING · 95% conf · "FOMC Wed; vol regime high"        │
+│        → full reasoning /audit/2026-06-12      [1 PENDING APPROVAL] │
+├────────────┬────────────┬────────────┬────────────┬─────────────────┤
+│ REGIME     │ OUTLOOK    │ RISK LEVEL │ CASH       │  EQUITY  $1,000 │
+│ BULL_VOLAT │ "recovery, │ heat 0.0%  │ 100%       │  vs QQQ ▁▂▃▅▂▃  │
+│ (2/3 conf) │  unproven" │ cap 2.0%   │            │  +0.0% / +1.2%  │
+├────────────┼────────────┼────────────┼────────────┼─────────────────┤
+│ POSITIONS 0│ REAL P&L 0 │ UNREAL 0   │ WIN — n<20 │ PF — · DD 0.0%  │
+├────────────┴────────────┴────────────┴────────────┴─────────────────┤
+│ HEALTH  ingest 9:14 ✓ · reconcile ✓ · hash chain ✓ · cron ✓         │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+## /approvals — the 9:20 screen
+```
+┌ PENDING (1) ─────────────────────────────────────────────────────────┐
+│ NVDA · PULLBACK · conviction 84→81 · plan R 2.6:1 · risk $10 (1.0%) │
+│ ┌─ BULL (≤250w) ────────────┐ ┌─ BEAR (≤250w, fresh-context) ──────┐ │
+│ │ ...                       │ │ ...                                │ │
+│ └───────────────────────────┘ └────────────────────────────────────┘ │
+│ PM rebuttal: ... · RISK: 5/5 layers PASS · QUALITY: 6/6 CLEARED      │
+│ PLAN: entry 205.40 lim · stop 197.20 · T1 221.8 · T2 trail · 1 shr  │
+│ Evidence: 9 blocks (T1×2 T2×6 T3×1) · run 2026-06-15 · commit a3f2  │
+│   [ ✓ APPROVE ]   [ ✗ REJECT (note…) ]   [ ? CHALLENGE (ask…) ]     │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+## /trade/[id]
+```
+┌ NVDA · OPEN ─ IDEA→CRITIC→RISK→QC→SUBMIT→APPROVED→VERIFIED→EXEC ──┐
+│ [Thesis] [Bull/Bear] [Risk] [Plan] [Timeline] [Post-mortem]        │
+│ TIMELINE                                                            │
+│  06-15 09:12 IDEA            conviction 84 (components…)            │
+│  06-15 09:13 CRITIC          REVISE→addressed · 84→81 · fresh-sub   │
+│  06-15 09:14 QUALITY         6/6 CLEARED                            │
+│  06-15 09:26 APPROVED        operator note: "agree, half size fine" │
+│  06-15 09:41 VERIFIED        7/7 at live px · drift 0.2%            │
+│  06-15 09:42 EXECUTED        fill 205.38 ×1 · ref a1b2… · stop set ✓│
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+## /market
+```
+┌ INTEL 2026-06-15 ◂ ▸ ─────────────────────────────────────────────┐
+│ WHAT │ WHY │ CHANGED │ MATTERS │ IGNORED │ INVALIDATES             │
+│ [Macro][News][Sectors][Breadth][Vol][CapFlows][Insider][Congress]  │
+│ ▸ "FOMC Jun 16–17 w/ SEP — no-entry days"                          │
+│   └ EVIDENCE: federalreserve.gov · T1 · pub 06-10 · corroborated   │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+## /performance
+```
+┌ EQUITY ─────────────── vs QQQ ┐ ┌ DRAWDOWN ──────────────────────┐
+│        ╱╲    ╱─── system      │ │ ────╲  ╱─── breaker −8% ─ ─ ─  │
+│ ──╲╱──╱  ╲──╱     qqq ───     │ │      ╲╱     floor −15% ─ ─ ─   │
+└───────────────────────────────┘ └────────────────────────────────┘
+│ WINDOW  CAGR  SHARPE  SORT  PF  EXP(R)  α     β    MAXDD   n      │
+│ 12M     —     —       —     —   —       —     —    —    [n<20 ⚠]  │
+```
+
+## /agents
+```
+┌ TECHNICAL ANALYST ──────────┐ ┌ RISK MANAGER ────────────────────┐
+│ last 06-15 · NOMINATE ×1    │ │ last 06-15 · PASS (5/5)          │
+│ conf 78 · calib 0.74 (n=19) │ │ vetoes 30d: 2 · guard agree 100% │
+│ disagreements 30d: 3        │ │ calib —  (rule-based)            │
+└─────────────────────────────┘ └──────────────────────────────────┘
+```
+
+## /capital-flows
+```
+┌ MOST INTERESTING ────────────────────────────────────────────────┐
+│ #1 XYZ · CFS 82 (cold-start cap: +2) · CEO+CFO cluster $1.2M P   │
+│    verified 5/5 · fwd-excess (class): 3m +2.1% n=14              │
+│ [Insider buys] [Insider sells] [Congress ⏱45d] [13F ⏱Q-end]      │
+└──────────────────────────────────────────────────────────────────┘
+```
+Layout system: left nav (11 routes), top system-banner slot, content
+max-w-7xl; mobile = read-only review (approve allowed, charts simplified).
