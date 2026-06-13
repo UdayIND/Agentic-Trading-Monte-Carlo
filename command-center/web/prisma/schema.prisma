@@ -1,0 +1,350 @@
+// Command Center schema (v6). Money fields use Float deliberately at this
+// account scale ($1k paper) for RSC-serialization simplicity — documented
+// deviation from DATABASE_SCHEMA.md; revisit Decimal at the $10k tier.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum RunType {
+  DAILY
+  WEEKLY
+  MONTHLY
+  QUARTERLY
+  ADHOC
+}
+
+enum RunStatus {
+  RUNNING
+  COMPLETE
+  FAILED
+  MISSED
+  HOLIDAY
+}
+
+enum ArtifactKind {
+  INTEL_REPORT
+  TOP_OPPS
+  BULL
+  BEAR
+  RISK
+  TRADE_PLAN
+  QUALITY
+  DECISION
+  POST_MORTEM
+  HANDOFF
+  OTHER
+}
+
+enum DecisionType {
+  BUY
+  SELL
+  HOLD
+  DO_NOTHING
+}
+
+enum Band {
+  REJECT
+  WATCH
+  TRADABLE
+  HIGH
+}
+
+enum OppStatus {
+  SCORED
+  NOMINATED
+  KILLED
+  PLANNED
+  WATCHLISTED
+}
+
+enum TradeStatus {
+  IDEA
+  PLANNED
+  PENDING_APPROVAL
+  APPROVED
+  REJECTED
+  EXECUTED
+  OPEN
+  CLOSED
+  CANCELLED
+  EXPIRED
+}
+
+enum TradeEventType {
+  IDEA
+  CRITIC_PASS
+  RISK_PASS
+  QUALITY_PASS
+  SUBMITTED
+  APPROVED
+  REJECTED
+  CHALLENGED
+  VERIFIED
+  EXECUTED
+  PARTIAL_FILL
+  STOP_SET
+  MODIFIED
+  STOPPED_OUT
+  TARGET_HIT
+  CLOSED
+  POST_MORTEM
+  EXPIRED
+}
+
+enum OperatorActionKind {
+  APPROVE
+  REJECT
+  CHALLENGE
+  NOTE
+  OVERRIDE
+  HALT_ACK
+}
+
+model Run {
+  id           String    @id @default(cuid())
+  date         DateTime  @db.Date
+  type         RunType
+  status       RunStatus
+  startedAt    DateTime
+  finishedAt   DateTime?
+  modelVersion String
+  gitCommit    String?
+  phase        String
+  regime       String
+  artifacts    Artifact[]
+  decision     Decision?
+  agentRuns    AgentRun[]
+  opportunities Opportunity[]
+  @@unique([date, type])
+}
+
+model Artifact {
+  id          String   @id @default(cuid())
+  runId       String
+  kind        ArtifactKind
+  path        String
+  content     String
+  frontmatter Json?
+  sha256      String
+  prevHash    String?
+  version     Int      @default(1)
+  createdAt   DateTime @default(now())
+  run         Run      @relation(fields: [runId], references: [id])
+  evidence    EvidenceBlock[]
+  @@unique([runId, kind, path, version])
+}
+
+model EvidenceBlock {
+  id          String    @id @default(cuid())
+  artifactId  String
+  claim       String
+  sourceName  String
+  sourceTier  Int
+  url         String?
+  publishedAt DateTime?
+  accessedAt  DateTime
+  confidence  String
+  artifact    Artifact  @relation(fields: [artifactId], references: [id])
+}
+
+model Decision {
+  id           String       @id @default(cuid())
+  runId        String       @unique
+  date         DateTime     @db.Date
+  decision     DecisionType
+  confidence   Int
+  reasoning    String
+  risks        String
+  invalidation String
+  horizon      String
+  tickers      String[]
+  run          Run          @relation(fields: [runId], references: [id])
+}
+
+model Opportunity {
+  id               String    @id @default(cuid())
+  runId            String
+  ticker           String
+  sector           String
+  marketCapBand    String    @default("large")
+  convictionPre    Int
+  convictionPost   Int?
+  components       Json
+  band             Band
+  playbook         String
+  catalyst         String?
+  expectedR        Float?
+  target           Float?
+  stop             Float?
+  inclusionReasons String
+  exclusionReasons String
+  status           OppStatus
+  tradeId          String?
+  run              Run       @relation(fields: [runId], references: [id])
+}
+
+model Trade {
+  id                String      @id @default(cuid())
+  ticker            String
+  status            TradeStatus
+  thesis            String
+  playbook          String
+  entryPlan         Float
+  stop              Float
+  target1           Float
+  target2           Float?
+  exitLogic         String
+  holdingPeriodDays Int
+  shares            Float
+  riskUsd           Float
+  maxLossUsd        Float
+  expectedRewardUsd Float
+  expectedR         Float
+  realizedR         Float?
+  realizedUsd       Float?
+  openedAt          DateTime?
+  closedAt          DateTime?
+  closeReason       String?
+  planRunId         String?
+  createdAt         DateTime    @default(now())
+  events            TradeEvent[]
+  actions           OperatorAction[]
+}
+
+model TradeEvent {
+  id      String         @id @default(cuid())
+  tradeId String
+  type    TradeEventType
+  at      DateTime       @default(now())
+  payload Json?
+  trade   Trade          @relation(fields: [tradeId], references: [id])
+}
+
+model OperatorAction {
+  id      String             @id @default(cuid())
+  tradeId String?
+  kind    OperatorActionKind
+  note    String?
+  at      DateTime           @default(now())
+  trade   Trade?             @relation(fields: [tradeId], references: [id])
+}
+
+model PositionSnapshot {
+  id                String   @id @default(cuid())
+  date              DateTime @db.Date
+  ticker            String
+  shares            Float
+  costBasis         Float
+  price             Float
+  plUsd             Float
+  stop              Float?
+  target            Float?
+  conviction        Int?
+  whyWeStillOwnThis String
+  tradeId           String?
+  @@unique([date, ticker])
+}
+
+model EquityPoint {
+  date     DateTime @id @db.Date
+  equity   Float
+  cash     Float
+  heatPct  Float
+  regime   String
+  qqqClose Float?
+}
+
+model MetricSnapshot {
+  id           String   @id @default(cuid())
+  asOf         DateTime @db.Date
+  window       String
+  cagr         Float?
+  sharpe       Float?
+  sortino      Float?
+  profitFactor Float?
+  expectancyR  Float?
+  winRate      Float?
+  alpha        Float?
+  beta         Float?
+  maxDrawdown  Float?
+  exposurePct  Float?
+  trades       Int      @default(0)
+  @@unique([asOf, window])
+}
+
+model CapitalFlowSignal {
+  id                 String    @id @default(cuid())
+  observedAt         DateTime
+  eventAt            DateTime
+  sourceClass        String
+  actor              String
+  ticker             String
+  txType             String
+  sizeUsd            Float?
+  priceAtObservation Float?
+  verified           Boolean
+  cfs                Int?
+  fwdExcess3m        Float?
+  fwdExcess6m        Float?
+  fwdExcess12m       Float?
+  @@unique([actor, ticker, eventAt, txType])
+}
+
+model Lesson {
+  id       String @id @default(cuid())
+  text     String
+  category String
+  count    Int    @default(1)
+  status   String @default("active")
+  evidence Json?
+}
+
+model AgentRun {
+  id            String  @id @default(cuid())
+  runId         String
+  role          String
+  pass          String
+  criticMode    String?
+  verdict       String?
+  confidence    Int?
+  disagreements Json?
+  vetoes        Json?
+  artifactId    String?
+  run           Run     @relation(fields: [runId], references: [id])
+}
+
+model CalibrationClaim {
+  id           String    @id @default(cuid())
+  date         DateTime  @db.Date
+  role         String
+  claimId      String    @unique
+  claimText    String
+  confidence   Int
+  resolvableBy DateTime?
+  resolvedAt   DateTime?
+  outcome      Boolean?
+}
+
+model QualityBlockEvent {
+  id           String   @id @default(cuid())
+  date         DateTime @db.Date
+  subject      String
+  check        Int
+  artifactId   String?
+  producerRole String
+}
+
+model SystemEvent {
+  id             String    @id @default(cuid())
+  at             DateTime  @default(now())
+  kind           String
+  severity       String
+  payload        Json?
+  acknowledgedAt DateTime?
+}

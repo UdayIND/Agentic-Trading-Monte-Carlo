@@ -85,12 +85,20 @@ execution. Docs: SYSTEM_ARCHITECTURE, DATABASE_SCHEMA, API_SPEC,
 DASHBOARD_SPEC, UI_WIREFRAMES, VERCEL_DEPLOYMENT, CRON_WORKFLOW,
 OPERATOR_MANUAL (the operator's contract).
 
-**Audit notice (2026-06-12)**: the v2 audit found 7 critical defects — do
-not place live orders until the P0 list in `audit/V3_RECOMMENDATIONS.md` is
-adopted. Known-broken as written: breaker re-arm undefined (deadlock),
-max-DD threshold unachievable, tempo caps can block mandated exits. Where
-ambiguity arises from these, resolve in the most restrictive direction and
-flag to the user.
+**Audit notice (2026-06-12)**: the v2 audit found 7 critical defects. The
+governance defects (breaker re-arm, DD threshold, tempo exemption) were
+fixed via Art V amendments. The P0 TOOLING is now BUILT (see below).
+
+**Build status (2026-06-12)**: P0 deterministic tooling is implemented and
+tested in `tools/` — `guard.py` (pre-trade validator; no order without
+PASS), `regime.py`, `metrics.py` (TWR/flow-adjusted), `runlock.py`; 25
+unit tests green (`python3 -m unittest discover -s tools/tests`). The agent
+workflow: save tool outputs (quotes/positions/orders/bars/portfolio) to
+JSON, run `guard.py`, obey the verdict. The v6 Command Center is built at
+`command-center/web/` (Next.js; `npm run dev`; see its README) — the
+operator dashboard, ingest API, and approval loop. Live trading still
+requires: $1k deposit, git remote, command-center deploy, and the 8-week
+paper gate run on this real stack.
 
 `strategy/STRATEGY.md` and `strategy/RISK_RULES.md` are v1, kept as
 quick-reference cards; where they differ from the v2 documents, v2 wins.

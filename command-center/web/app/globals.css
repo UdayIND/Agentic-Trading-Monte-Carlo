@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+:root { color-scheme: dark; }
+
+body {
+  background: #09090b;
+  color: #e4e4e7;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+
+/* terminal table density */
+table.term { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+table.term th { text-align: left; color: #a1a1aa; font-weight: 500; padding: 0.4rem 0.6rem; border-bottom: 1px solid #27272a; }
+table.term td { padding: 0.4rem 0.6rem; border-bottom: 1px solid #18181b; }
+table.term tr:hover td { background: #131316; }
