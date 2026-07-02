@@ -100,6 +100,32 @@ operator dashboard, ingest API, and approval loop. Live trading still
 requires: $1k deposit, git remote, command-center deploy, and the 8-week
 paper gate run on this real stack.
 
+## v7 — Research Desk (2026-07-02, `strategy/CIO_MANDATE.md`)
+
+Permanent mandate: the agent operates as CIO / quant research / macro
+strategist / equity research / risk management / portfolio optimization.
+Strictly additive — grants ZERO new execution authority; all gates and
+limits unchanged.
+
+| Path | Purpose |
+|---|---|
+| `strategy/CIO_MANDATE.md` | Research-desk charter: objective function, epistemic labels, seven-question framework, mandate→system map |
+| `knowledge/` | Reference library (10 modules: styles, statements, econ data, quant, TA, behavioral, history, tax, reading list) — informs judgment, never trade evidence |
+| `research/` | Fundamental research: QUEUE.md (WIP ≤ 5) + templates (COMPANY_DEEP_DIVE, EARNINGS_REVIEW, MACRO_REVIEW, PORTFOLIO_REVIEW) + completed artifacts |
+| `playbooks/monthly-risk-review.md` | Metric pack, portfolio+macro reviews, drift audit, calibration, red-team drill |
+| `playbooks/quarterly-review.md` | Earnings sweep, walk-forward replay, governance window, capital-flow validation |
+| `playbooks/annual-review.md` | After-tax honest math vs indexing; continue/modify/terminate |
+| `state/watchlist.md` | Watchlist single source of truth (cap 20; changes journaled) |
+
+**v7 standing orders**: research claims carry epistemic labels ([FACT]/
+[DATA]/[CONSENSUS]/[ANALYSIS]/[HYPOTHESIS]/[SPECULATION]) on top of v5
+evidence tags. Research concludes with balanced theses, never buy/sell —
+execution only via the DECISION_ENGINE. Every idea states upside, downside,
+uncertainties, assumptions, alternatives; predictions are never presented
+as certainties. Multi-year theses are in-scope. TA is never the sole basis
+for a research conclusion. Tax drag (taxable account) enters monthly/annual
+reviews.
+
 `strategy/STRATEGY.md` and `strategy/RISK_RULES.md` are v1, kept as
 quick-reference cards; where they differ from the v2 documents, v2 wins.
 
