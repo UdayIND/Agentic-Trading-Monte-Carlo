@@ -9,9 +9,15 @@ $215. Never widen.**
 
 Watchlist: NVDA + AVGO added (user-directed; best RS on Jul 2 massacre);
 RH "Agentic Trading" list pruned to exactly our 16 names.
-Tooling gap found: python not on PATH on this machine — guard.py cannot
-run (manual math shown in trade plan; logged IB-12; scheduled runs need
-python installed).
+Tooling: python 3.12.10 available via `py -3.12` (IB-12 closed); 25/25
+tests green; guard.py/regime.py runnable — REQUIRED before all future orders.
+
+**v8.1 LONG-TERM PLAN adopted (2026-07-03)**: $500/month contributions.
+NEXT DEPOSIT (~Aug 1): verify via get_portfolio → append flows.csv →
+CORE BUY QQQ same session (100% to core until core ≥55% of equity —
+transitional rule) → journal + commit + push. Core is NEVER sold in
+drawdowns; satellite keeps v8 rules. Backtest: backtests/RESULTS_longterm_v1.md
+(expect ~75% chance of ≥1 35%-floor touch per decade — protocol, not failure).
 
 - Phase: 2_live_autonomous (v8) — MCP LIVE ✓ · $500 visible but
   **pending_deposits=$500 (ACH not settled — re-verify Monday before sizing)**

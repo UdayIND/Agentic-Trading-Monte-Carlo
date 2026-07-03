@@ -149,7 +149,17 @@ UNVERIFIED until get_portfolio confirms; flows.csv).
   (recorded, CHANGELOG v8). v6 approval flow = notify-after for this
   account while the grant stands.
 
-**Current phase: 2 — Live autonomous (v8)**, mechanically gated on: MCP
+**v8.1 (2026-07-03) — LONG-TERM PLAN, binding**: `strategy/LONG_TERM_PLAN.md`
+is the master capital plan. $500/month standing contribution (user: "really
+important"). CORE (~70%, QQQ DCA — bought on every deposit regardless of
+regime, never stopped, never sold in drawdowns) + SATELLITE (~30%, the v8
+high-risk book). Transitional (<$2k equity): deposits 100% core until core
+≥55%. No shared tickers between sleeves (wash-sale guard). 35% unit-NAV
+floor flattens the SATELLITE ONLY. Benchmark: 100% QQQ DCA, identical
+flows. Monthly deposit workflow in LONG_TERM_PLAN §3. Backtest:
+`backtests/longterm_dca_v1.py` (seed 42) + RESULTS_longterm_v1.md.
+
+**Current phase: 2 — Live autonomous (v8/v8.1)**, mechanically gated on: MCP
 reconnection + deposit verification + first deep-dives (research/QUEUE P1)
 + per-trade gates. Where any older paper-phase language conflicts with
 this section, **v8 wins**.

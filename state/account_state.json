@@ -42,6 +42,13 @@
   "conviction_watchlist": ["MU", "SNDK", "WDC", "STX", "AMD", "MRVL", "DELL", "AMAT", "COHR", "CIEN", "FIX", "FLEX", "QQQ", "SMH"],
   "last_session_decision": "2026-07-02 DO_NOTHING (90%) — no execution capability (MCP down, deposit unverified); watchlist seeded, v8 adopted",
   "verification_cancellations": 0,
+  "contribution_plan": {
+    "amount": 500.0,
+    "cadence": "monthly",
+    "directive_date": "2026-07-03",
+    "allocation": "TRANSITIONAL (<$2k equity): 100% to CORE (QQQ DCA) until core >= 55% of equity; then $350 core / $150 satellite (LONG_TERM_PLAN section 2-3)",
+    "workflow": "on deposit VERIFIED via get_portfolio: append flows.csv, core buy same session, update state, commit+push"
+  },
   "autonomous_execution": {
     "granted": true,
     "granted_date": "2026-07-02",
