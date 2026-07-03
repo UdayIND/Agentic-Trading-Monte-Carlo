@@ -129,9 +129,30 @@ reviews.
 `strategy/STRATEGY.md` and `strategy/RISK_RULES.md` are v1, kept as
 quick-reference cards; where they differ from the v2 documents, v2 wins.
 
-**Current phase: 1 — Paper trading** (IMPLEMENTATION_ROADMAP §6). No
-`place_equity_order` calls until the paper gate passes AND the deposit lands;
-paper runs use `review_equity_order` as the endpoint.
+## v8 — High-risk mandate + autonomous execution (2026-07-02)
+
+`strategy/HIGH_RISK_MANDATE.md` is binding. User directives in writing:
+high risk/high returns; standing autonomous execution ("execute trades
+without me messaging"). $500 deposited (user-reported 2026-07-02 —
+UNVERIFIED until get_portfolio confirms; flows.csv).
+
+- **Parameters**: risk/trade 5% · ≤3 positions · single ≤40% · heat ≤15% ·
+  2x/3x index/sector ETFs allowed (max 1, ≤25%) · DD floor 35%
+  deposit-adjusted → flatten + paper + notify. Anti-churn caps, mandatory
+  stops, no averaging down, breaker, guard.py verdict: ALL unchanged.
+- **Autonomy grant**: execute without per-trade approval ONLY when, in the
+  same session: MCP live + equity verified + conviction ≥80 + complete plan
+  + guard.py PASS + Stage-6 verify + breaker clear. Report every execution
+  (journal, decision_log, git). Any user message revokes; 35% floor
+  auto-revokes; lapses each quarterly review unless reconfirmed.
+- **User waived the 8-week paper gate and v6 operator-approval loop**
+  (recorded, CHANGELOG v8). v6 approval flow = notify-after for this
+  account while the grant stands.
+
+**Current phase: 2 — Live autonomous (v8)**, mechanically gated on: MCP
+reconnection + deposit verification + first deep-dives (research/QUEUE P1)
++ per-trade gates. Where any older paper-phase language conflicts with
+this section, **v8 wins**.
 
 ## Standing orders (every session that touches the market)
 

@@ -1,2 +1,3 @@
 date,time_et,regime,decision,tickers,conviction,confidence_pct,heat_after,cash_pct,run_dir
 2026-06-12,19:30,BULL_VOLATILE(est),DO_NOTHING,,,95,0.0,100,runs/2026-06-12
+2026-07-02,14:30,BULL(web-est),DO_NOTHING,,,90,0.0,100,runs/2026-07-02

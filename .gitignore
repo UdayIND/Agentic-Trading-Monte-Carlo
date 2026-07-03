@@ -9,3 +9,5 @@ __pycache__/
 drills/
 command-center/web/prisma/migrations/.tmp/
 state/.runlock
+runs/cron-logs/
+.claude/settings.json
