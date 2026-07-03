@@ -2,7 +2,7 @@
   "account_number": "825795594",
   "starting_capital": 500.0,
   "deposited": true,
-  "deposit_note": "USER-REPORTED $500 on 2026-07-02; UNVERIFIED — first MCP session must confirm via get_portfolio before any order",
+  "deposit_note": "$500 VERIFIED via get_portfolio 2026-07-03 — pending_deposits field confirms deposit in flight",
   "current_equity": 500.0,
   "high_water_mark": 500.0,
   "circuit_breaker": false,

@@ -1,30 +1,27 @@
-# Session Handoff — 2026-07-02 (v7+v8 adoption session)
-- Phase: **2_live_autonomous (v8)** — execution GATED on: (1) Robinhood MCP
-  reconnect (`claude mcp add robinhood-trading --transport http
-  https://agent.robinhood.com/mcp/trading` + /mcp OAuth — endpoint verified
-  on robinhood.com support 2026-07-02), (2) verify $500 deposit via
-  get_portfolio (user-reported, flows.csv), (3) MU+SNDK deep-dives (QUEUE
-  P1), (4) guard.py PASS + Stage-6 on a specific plan.
-- v8 = strategy/HIGH_RISK_MANDATE.md: risk/trade 5%, ≤3 positions, single
-  ≤40%, heat ≤15%, DD floor 35% → auto-flatten+paper. Autonomous execution
-  GRANTED (conditions in §3). First entries: half-size, pullback structure
-  preferred over chases; QQQ/SMH fallback.
-- Regime: BULL trend (web levels: S&P 7,483 / Nasdaq 26,040 near records);
-  vol axis UNKNOWN — run tools/regime.py on MCP bars FIRST market session.
-- Equity/cash/heat: $500 (UNVERIFIED) / 100% cash / 0%.
-- Watchlist: seeded ×14 (state/watchlist.md — AI memory/compute/optics/DC
-  themes; energy deliberately excluded, ceasefire reversal). Mirror to
-  Robinhood list when MCP live. ALL earnings dates unverified — check
-  before any entry.
-- Events: June CPI ~Jul 14 (VERIFY exact date), FOMC Jul 28–29 → no-entry
-  windows. Jul 3 half-day/Jul 4 holiday (verify calendar).
-- Invalidation triggers: hot June CPI (hike repricing); ceasefire breakdown
-  (oil spike); MU/SMH below 50d SMA (leadership break).
-- Automation: tools/cron/ scripts + Windows scheduled tasks (9:00 pipeline /
-  9:40 execute / Sun 10:00 weekly). Claude CLI installed via winget this
-  session. Tasks no-op gracefully if MCP/CLI unavailable.
-- Pending user actions: GitHub push auth (commit e9cd134+ local), MCP add +
-  OAuth (desktop device required), rotate Jira token in ~/.claude/settings.json
-  (plaintext, flagged 2026-07-02).
-- Last decision: DO_NOTHING 90% (runs/2026-07-02) — no execution capability
-  this session; research+governance session.
+# Session Handoff — 2026-07-03 (holiday; near-miss caught; Monday plan set)
+- Phase: 2_live_autonomous (v8) — MCP LIVE ✓ · $500 visible but
+  **pending_deposits=$500 (ACH not settled — re-verify Monday before sizing)**
+- Market: CLOSED today (Jul 4 observed); reopens Mon Jul 6 09:30 ET.
+- **Near-miss on record**: SOXL plan cancelled pre-order (self-graded
+  Stage-6, market-closed miss, 3x into vol expansion, instrument drift).
+  Lessons L1–L3 in journal/LESSONS_LEARNED.md. Stage-6 checks now REQUIRE
+  same-session tool/dated-source citations. Deterministic gates mandatory:
+  guard.py on saved JSON + regime.py on real bars before ANY order.
+- Research: MU deep-dive → conviction 82 TACTICAL (SCA moat 12–18mo; base
+  case ~$325 vs $976 — trend must be intact). SNDK → 78, do-not-trade at
+  $1,743. Critic pass (fresh context) queued P1 for Monday.
+- Tape: two-day semi distribution (Jul 1–2): MU −5.5%, SNDK −14.2%, SOXL
+  −16.8% vs SPY flat = leadership break in the crowded trade. Stand-aside
+  posture until stabilization.
+- **Monday Jul 6 decision tree (pre-committed — runs/2026-07-03/DECISION.md)**:
+  regime.py + deposit-settled check + tradability + earnings calendar FIRST;
+  Scenario A (MU holds ≥$950, semis stabilize) → SMH starter $100–125,
+  stop −8%, ~2% risk; Scenario B (MU <$900 / SMH <50d) → NO ENTRY;
+  Scenario C (gap up) → don't chase. Leveraged OFF until vol percentile
+  normal. No entries Jul 13–15 (CPI Tue Jul 14, verified BLS) or Jul 27–30
+  (FOMC Jul 28–29).
+- Robinhood watchlist "Agentic Trading" synced (+11); over 20-name cap due
+  to 13 legacy names — prune proposal at Sunday weekly review.
+- Pending user items: GitHub push auth still failing (commits local);
+  Jira token in ~/.claude/settings.json still needs rotation.
+- Last decision: DO_NOTHING 95% (runs/2026-07-03/DECISION.md).

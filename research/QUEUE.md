@@ -13,10 +13,9 @@ candidacy · P3 = knowledge/curiosity.
 
 | # | Pri | Item | Source of idea | Question to answer | Due |
 |---|---|---|---|---|---|
-| 1 | P1 | MU deep-dive | H1 leadership scan (runs/2026-07-02) | Is HBM pricing power durable through 2027 supply adds, and what does the current price already assume? REQUIRED before any MU entry | 2026-07-06 |
-| 2 | P1 | SNDK deep-dive | Same scan; +858% H1, −11% pullback | Is the enterprise-SSD supply crunch structural or cyclical? What breaks the "11× FY27" claim? REQUIRED before any SNDK entry | 2026-07-06 |
-| 3 | P2 | AMD deep-dive | Same scan | Accelerator share gains vs incumbents — real or narrative? | 2026-07-12 |
-| 4 | P2 | FIX deep-dive | Same scan | Backlog visibility and margin durability of DC construction cycle | 2026-07-12 |
+| 1 | P2 | AMD deep-dive | H1 leadership scan | Accelerator share gains vs incumbents — real or narrative? | 2026-07-12 |
+| 2 | P2 | FIX deep-dive | Same scan | Backlog visibility and margin durability of DC construction cycle | 2026-07-12 |
+| 3 | P1 | MU/SNDK critic pass (fresh-context) | v5 three-pass rule — primary passes done 2026-07-03 | Do the 82/78 conviction scores survive an adversarial review, especially the internal contradiction (base-case fair values far below spot)? | 2026-07-06 |
 
 ## Queued
 
@@ -27,3 +26,5 @@ candidacy · P3 = knowledge/curiosity.
 
 | Date | Item | Artifact | One-line outcome |
 |---|---|---|---|
+| 2026-07-03 | MU deep-dive (primary pass) | research/companies/MU_2026-07-03.md | Conviction 82 TACTICAL only — SCA-protected 12–18mo window, but base-case normalized value ~$325 vs $976 spot; trend must be intact to trade it |
+| 2026-07-03 | SNDK deep-dive (primary pass) | research/companies/SNDK_2026-07-03.md | Conviction 78 — spot-price dependent, no contracts, HBF speculative; do not trade at current levels |
