@@ -1,4 +1,18 @@
-# Session Handoff — 2026-07-03 (holiday; near-miss caught; Monday plan set)
+# Session Handoff — 2026-07-03 (holiday; near-miss caught; conditional NVDA order LIVE)
+
+**⚠️ FIRST ACTION MONDAY JUL 6 (any session, ~9:45 ET): check order
+6a482004-5b43-4d56-8e3c-8080e173281b (NVDA buy 1 @ stop 198/limit 199.50,
+GFD). IF FILLED → place GTC stop_market SELL $183.00 immediately, update
+journal + state. If untriggered by close, it expires — reassess Tue with
+fresh decision tree. Ratchet plan: +1R $215 → stop $199; +2R $232 → stop
+$215. Never widen.**
+
+Watchlist: NVDA + AVGO added (user-directed; best RS on Jul 2 massacre);
+RH "Agentic Trading" list pruned to exactly our 16 names.
+Tooling gap found: python not on PATH on this machine — guard.py cannot
+run (manual math shown in trade plan; logged IB-12; scheduled runs need
+python installed).
+
 - Phase: 2_live_autonomous (v8) — MCP LIVE ✓ · $500 visible but
   **pending_deposits=$500 (ACH not settled — re-verify Monday before sizing)**
 - Market: CLOSED today (Jul 4 observed); reopens Mon Jul 6 09:30 ET.

@@ -20,6 +20,21 @@
   "regime_note": "S&P 7483 / Nasdaq 26040 near records after +9.6%/+12.8% H1; semi profit-taking Jul 1-2; NFP miss repriced Fed to hold (78%)",
   "core_position": null,
   "open_satellites": [],
+  "open_orders": [
+    {
+      "order_id": "6a482004-5b43-4d56-8e3c-8080e173281b",
+      "placed": "2026-07-03",
+      "symbol": "NVDA",
+      "side": "buy",
+      "type": "stop_limit",
+      "qty": 1,
+      "stop": 198.0,
+      "limit": 199.5,
+      "tif": "gfd (Mon Jul 6 session)",
+      "state_at_placement": "queued",
+      "protocol": "ON FILL: place GTC stop_market sell $183.00 IMMEDIATELY; ratchet +1R/$215->stop $199, +2R/$232->stop $215; plan trades/TRADE_PLAN_NVDA_2026-07-03.md"
+    }
+  ],
   "closed_trades": 0,
   "last_daily_run": "2026-07-02",
   "last_weekly_review": null,

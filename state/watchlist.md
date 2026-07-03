@@ -28,8 +28,10 @@ max 2 positions from any one theme bucket at a time (RISK_FRAMEWORK buckets).
 | CIEN | 2026-07-02 | Optics/network | Networking capacity build, +110% H1 [web] | — | verify | 2026-07-02 |
 | FIX | 2026-07-02 | DC build-out | Mechanical/electrical DC contractor, +112% H1 [web] | QUEUED P2 | verify | 2026-07-02 |
 | FLEX | 2026-07-02 | DC build-out | Manufacturing/power infra, +168% H1 [web] | — | verify | 2026-07-02 |
-| QQQ | 2026-07-02 | Instrument | Benchmark instrument; core-position candidate per STRATEGY_v2 | n/a | n/a | 2026-07-02 |
-| SMH | 2026-07-02 | Instrument | Semi ETF — theme expression with less single-name gap risk | n/a | n/a | 2026-07-02 |
+| QQQ | 2026-07-02 | Instrument | Benchmark instrument; core-position candidate per STRATEGY_v2 | n/a | n/a | 2026-07-03 |
+| SMH | 2026-07-02 | Instrument | Semi ETF — theme expression with less single-name gap risk | n/a | n/a | 2026-07-03 |
+| NVDA | 2026-07-03 | AI compute (core) | Bellwether; BEST RS in complex on Jul 2 massacre (−1.6% vs theme −5–14%) [tool: quotes]; guided next Q $91B vs $87.2B consensus [web] | rapid assessment 2026-07-03 (full DD queued) | none ≤14d [tool] | 2026-07-03 |
+| AVGO | 2026-07-03 | AI compute (core) | Custom AI silicon leader; 2nd-best RS Jul 2 (−2.4%) [tool: quotes] | — | none ≤14d [tool] | 2026-07-03 |
 
 **Deliberately excluded — energy** (XOM/XLE etc.): H1's top sector (+22%)
 but momentum is REVERSING on the US–Iran ceasefire (oil −20% from peak);
@@ -41,3 +43,5 @@ weekly review if the ceasefire breaks. [web: intel report §2]
 | Date | Add/Drop | Ticker | Evidence (one line) |
 |---|---|---|---|
 | 2026-07-02 | Seed ×14 | (table above) | Initial population from H1-2026 leadership + AI-infra earnings cycle; runs/2026-07-02 intel report |
+| 2026-07-03 | Add ×2 | NVDA, AVGO | USER-DIRECTED expansion; both showed strongest RS in complex on the Jul 2 distribution day [tool: quotes]; candidates LRCX/KLAC/TER/LITE/GLW/GNRC evaluated and rejected (theme-redundant and/or weakest RS, −9 to −13.6%) |
+| 2026-07-03 | RH sync | — | Robinhood "Agentic Trading" list pruned to match this file exactly (removed 11 legacy: SHOP HOOD UBER PLTR TSLA GOOGL AMZN XBI XLF XLE SPY); list = 16 names, cap 20 ✓ |
